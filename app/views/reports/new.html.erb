@@ -1,0 +1,43 @@
+        <div class="max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg">
+          <h2 class="text-xl font-semibold mb-6 text-gray-800">Enviar Nova Demanda</h2>
+
+          <%= form_with(model: @report, local: true) do |form| %>
+            <% if form.object.errors.any? %>
+              <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+                <p class="font-bold">Ocorreram erros:</p>
+                <ul>
+                  <% form.object.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+
+            <div class="mb-4">
+              <%= form.label :title, "Título da Demanda", class: "block text-gray-700 text-sm font-bold mb-2" %>
+              <%= form.text_field :title, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", placeholder: "Ex: Buraco na Rua X" %>
+            </div>
+
+            <div class="mb-4">
+              <%= form.label :description, "Detalhes da Demanda", class: "block text-gray-700 text-sm font-bold mb-2" %>
+              <%= form.text_area :description, rows: 5, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", placeholder: "Descreva o problema, sugestão ou dúvida em detalhes." %>
+            </div>
+
+            <div class="mb-4">
+              <%= form.label :department_id, "Área Responsável", class: "block text-gray-700 text-sm font-bold mb-2" %>
+              <%= form.collection_select :department_id, @departments, :id, :name, { prompt: "Selecione a Área..." }, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+            </div>
+
+            <div class="mb-6">
+              <%= form.label :anonymous, class: "flex items-center text-gray-700 text-sm font-bold" do %>
+                <%= form.check_box :anonymous, class: "mr-2 leading-tight" %>
+                <span>Enviar como Anônimo</span>
+              <% end %>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <%= form.submit "Enviar Demanda", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer" %>
+            </div>
+          <% end %>
+        </div>
+        

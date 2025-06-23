@@ -54,3 +54,16 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 end
+
+        # config/routes.rb
+        Rails.application.routes.draw do
+          # Define a rota raiz ('/') para o método 'new' do ReportsController
+          root 'reports#new'
+
+          # Define rotas para o recurso 'reports', permitindo apenas as ações 'new', 'create' e 'show'
+          # GET /reports/new    -> reports#new (formulário para nova demanda)
+          # POST /reports       -> reports#create (criação da demanda)
+          # GET /reports/:id    -> reports#show (visualização de uma demanda específica)
+          resources :reports, only: [:new, :create, :show]
+        end
+        

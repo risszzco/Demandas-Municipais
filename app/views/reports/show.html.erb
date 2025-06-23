@@ -1,0 +1,17 @@
+        <div class="max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg">
+          <h2 class="text-xl font-semibold mb-4 text-gray-800">Demanda Enviada com Sucesso!</h2>
+          <p class="text-gray-700 mb-6">Sua demanda foi registrada e enviada para a secretaria responsável. Agradecemos sua colaboração!</p>
+
+          <div class="border-t border-gray-200 pt-4">
+            <p class="text-gray-600 text-sm mb-2"><strong>ID da Demanda:</strong> <%= @report.id %></p>
+            <p class="text-gray-600 text-sm mb-2"><strong>Título:</strong> <%= @report.title %></p>
+            <p class="text-gray-600 text-sm mb-2"><strong>Área:</strong> <%= @report.department.name %></p>
+            <p class="text-gray-600 text-sm mb-2"><strong>Status:</strong> Pendente</p>
+            <p class="text-gray-600 text-sm mb-2"><strong>Enviado Anonimamente:</strong> <%= @report.anonymous ? 'Sim' : 'Não' %></p>
+          </div>
+
+          <div class="mt-8 text-center">
+            <%= link_to "Enviar Outra Demanda", root_path, class: "inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+          </div>
+        </div>
+        
