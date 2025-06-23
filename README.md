@@ -46,7 +46,7 @@ Clone o Repositório:
 
 Bash
 
-git clone []
+git clone [https://github.com/risszzco/Demandas-Municipais.git]
 cd citizen_report_app
 Instale as Gems:
 
