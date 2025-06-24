@@ -33,4 +33,34 @@
             params.require(:report).permit(:title, :description, :department_id, :anonymous)
           end
         end
+
+                # app/controllers/reports_controller.rb
+        class ReportsController < ApplicationController
+          def new
+            @report = Report.new
+            @departments = Department.all
+          end
+
+          def create
+            @report = Report.new(report_params)
+            if @report.save
+              DepartmentMailer.report_submitted(@report).deliver_later # Adiciona esta linha
+              redirect_to @report, notice: 'Sua demanda foi enviada com sucesso!'
+            else
+              @departments = Department.all
+              render :new, status: :unprocessable_entity
+            end
+          end
+
+          def show
+            @report = Report.find(params[:id])
+          end
+
+          private
+
+          def report_params
+            params.require(:report).permit(:title, :description, :department_id, :anonymous, attachments: []) # Adiciona attachments: []
+          end
+        end
+        
         
