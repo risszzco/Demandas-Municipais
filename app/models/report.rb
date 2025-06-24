@@ -10,3 +10,13 @@
           validates :department, presence: true # A demanda deve estar associada a uma secretaria
         end
         
+                # app/models/report.rb
+        class Report < ApplicationRecord
+          belongs_to :department
+          has_many_attached :attachments # Adiciona esta linha
+
+          validates :title, presence: true, length: { minimum: 5 }
+          validates :description, presence: true, length: { minimum: 10 }
+          validates :department, presence: true
+        end
+        
