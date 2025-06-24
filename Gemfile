@@ -26,7 +26,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Gemfile
 gem "tailwindcss-rails"
-gem 'rails', '~> 5.2.0'  # ou qualquer versão que você esteja usando
+gem 'rails', '~> 4.2.10'  # ou qualquer versão que você esteja usando
 gem "actionmailer" 
 
 # Use ActiveModel has_secure_password
