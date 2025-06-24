@@ -26,8 +26,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Gemfile
 gem "tailwindcss-rails"
-gem "activestorage", github: "rails/activestorage", branch: "main" # Ou a versão específica que você deseja
-gem "actionmailer" # Se não estiver presente
+gem 'rails', '~> 5.2.0'  # ou qualquer versão que você esteja usando
+gem "actionmailer" 
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
