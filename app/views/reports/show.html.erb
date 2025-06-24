@@ -14,4 +14,31 @@
             <%= link_to "Enviar Outra Demanda", root_path, class: "inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
           </div>
         </div>
+                <!-- app/views/reports/show.html.erb -->
+        <!-- O resto da página permanece, adicionamos este bloco para anexos -->
+          <% if @report.attachments.any? %>
+            <div class="mt-6">
+              <h3 class="text-md font-semibold text-gray-800 mb-2">Anexos:</h3>
+              <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                <% @report.attachments.each do |attachment| %>
+                  <div class="relative group">
+                    <% if attachment.image? %>
+                      <%= image_tag rails_blob_url(attachment), class: "w-full h-24 object-cover rounded-lg shadow-md transition-transform transform group-hover:scale-105" %>
+                    <% elsif attachment.video? %>
+                      <video class="w-full h-24 object-cover rounded-lg shadow-md" controls>
+                        <source src="<%= rails_blob_url(attachment) %>" type="<%= attachment.content_type %>">
+                        Seu navegador não suporta a tag de vídeo.
+                      </video>
+                    <% else %>
+                      <div class="w-full h-24 bg-gray-200 flex items-center justify-center rounded-lg shadow-md text-gray-600 text-center text-xs">
+                        <%= attachment.filename %> (Arquivo)
+                      </div>
+                    <% end %>
+                    <%= link_to "Ver", rails_blob_url(attachment), target: "_blank", class: "absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white rounded-lg opacity-0 group-hover:opacity-100 transition-opacity text-sm font-bold" %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        <!-- ... -->
         
