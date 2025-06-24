@@ -39,3 +39,34 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end
+        # config/environments/development.rb
+        # ... (manter o restante do arquivo) ...
+        Rails.application.configure do
+          # ... (manter as outras configurações) ...
+
+          # Don't care if the mailer can't send.
+          config.action_mailer.raise_delivery_errors = true
+          config.action_mailer.perform_caching = false
+          config.action_mailer.perform_deliveries = true
+
+          # Configurações do Action Mailer para envio via SMTP (ex: Gmail)
+          config.action_mailer.delivery_method = :smtp
+          config.action_mailer.smtp_settings = {
+            address:              'smtp.gmail.com', # Servidor SMTP (ex: 'smtp.sendgrid.net', 'smtp.mailgun.org')
+            port:                 587,              # Porta SMTP (587 para TLS/STARTTLS, 465 para SSL)
+            domain:               'gmail.com',      # Domínio do seu provedor SMTP (ex: 'sendgrid.com', 'mailgun.org')
+            user_name:            ENV['SMTP_USERNAME'], # **Defina esta variável de ambiente (seu e-mail)**
+            password:             ENV['SMTP_PASSWORD'], # **Defina esta variável de ambiente (sua senha de app/API Key)**
+            authentication:       'plain',          # Tipo de autenticação (ex: 'plain', 'login', 'cram_md5')
+            enable_starttls_auto: true             # Habilita STARTTLS para segurança
+          }
+          # OU, para testar emails localmente com MailCatcher (recomendado em dev):
+          # config.action_mailer.delivery_method = :smtp
+          # config.action_mailer.smtp_settings = { address: "localhost", port: 1025 }
+
+          # ... (manter as outras configurações) ...
+          
+          # Enable URL options for Action Mailer to generate full URLs in emails
+          config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+        end
+        
